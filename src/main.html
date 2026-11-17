@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Weather dashboard</title>
+        <link rel="stylesheet" href="css/root.css" />
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/animations.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
+
+        <script src="js/config.js" defer></script>
+        <script src="js/utils.js" defer></script>
+        <script src="js/dom.js" defer></script>
+        <script src="js/fetch.js" defer></script>
+        <script src="js/render.js" defer></script>
+        <script src="js/main.js" defer></script>
+    </head>
+
+    <body>
+        <main>
+            <section class="hero">
+                <h1 class="hero-title">
+                    <span class="hero-greeting">Hello!</span>
+                    <span class="hero-subtitle">How's the sky looking today?</span>
+                </h1>
+
+                <div class="hero-search">
+                    <input
+                        class="hero-text-box"
+                        id="txtSearch"
+                        type="text"
+                        name="search"
+                        placeholder="Search for a city..."
+                        aria-label="Search for a city..."
+                    />
+                    <button class="hero-button" id="btnSearch" type="button">
+                        Search
+                    </button>
+                </div>
+            </section>
+
+            <section class="current">
+                <div class="current-location">
+                    <h2 class="current-city" id="currentCity"></h2>
+                    <p class="current-date" id="currentDate"></p>
+                </div>
+
+                <div class="current-info">
+                    <img
+                        class="current-icon"
+                        id="currentIcon"
+                        src="../assets/images/icon-sunny.webp"
+                        alt="Weather icon"
+                        width="320"
+                        height="320"
+                    />
+                    <div class="current-temperature">
+                        <span id="currentTemperature"></span>
+                    </div>
+                </div>
+
+                <div class="current-conditions">
+                    <div class="box current-condition">
+                        <p class="current-condition-title">Feels like</p>
+                        <p
+                            class="current-condition-value"
+                            id="currentApparentTemperature"
+                        ></p>
+                    </div>
+
+                    <div class="box current-condition">
+                        <p class="current-condition-title">Humidity</p>
+                        <p
+                            class="current-condition-value"
+                            id="currentHumidity"
+                        ></p>
+                    </div>
+
+                    <div class="box current-condition">
+                        <p class="current-condition-title">Wind</p>
+                        <p class="current-condition-value" id="currentWind"></p>
+                    </div>
+
+                    <div class="box current-condition">
+                        <p class="current-condition-title">Precipitation</p>
+                        <p
+                            class="current-condition-value"
+                            id="currentPrecipitation"
+                        ></p>
+                    </div>
+
+                    <div class="box current-condition">
+                        <p class="current-condition-title">
+                            Average Temperature Today
+                        </p>
+                        <p
+                            class="current-condition-value"
+                            id="currentAverageTemperature"
+                        ></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="daily">
+                <h2>Daily forecast</h2>
+
+                <div class="forecast-container" id="forecastContainer"></div>
+
+                <template id="forecastTemplate">
+                    <div class="box daily-day">
+                        <p class="daily-value daily-name"></p>
+                        <img
+                            class="daily-value-icon daily-icon"
+                            src="../assets/images/icon-sunny.webp"
+                            alt=""
+                            width="320"
+                            height="320"
+                        />
+                        <div class="dailyTemperatures">
+                            <p class="daily-value daily-min-temperature"></p>
+                            <p class="daily-value daily-max-temperature"></p>
+                        </div>
+                    </div>
+                </template>
+            </section>
+
+            <section class="hourly">
+                <h2>Hourly forecast</h2>
+                <select
+                    class="dropdown"
+                    id="chooseDay"
+                    aria-label="Choose day"
+                ></select>
+
+                <div class="hourly-container" id="hourlyContainer"></div>
+
+                <template id="hourlyTemplate">
+                    <div class="box hourly-hour">
+                        <img
+                            class="hourly-value-icon hourly-icon"
+                            src="../assets/images/icon-sunny.webp"
+                            alt=""
+                            width="320"
+                            height="320"
+                        />
+
+                        <p class="hour"></p>
+                        <p class="hourly-temperature"></p>
+                    </div>
+                </template>
+            </section>
+        </main>
+    </body>
+</html>

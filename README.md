@@ -6,7 +6,7 @@ A modern, responsive weather dashboard web application that allows users to sear
 ## Functionalities
 - **City Search**: Search for any location worldwide using the Open-Meteo Geocoding API. Supports both button clicks and pressing the `Enter` key.
 - **Current Weather**: Displays current temperature, apparent temperature ("feels like"), humidity, wind speed, precipitation, and today's average temperature.
-- **Daily Forecast**: A 7-day forecast showing the day of the week, weather condition icons, minimum and maximum temperatures, and daily averages.
+- **Daily Forecast**: A 7-day forecast showing the day of the week, weather condition icons, minimum and maximum temperatures.
 - **Hourly Forecast**: Interactive hourly breakdown for any selected day via a dropdown selector.
 - **Responsive Design**: Fully adaptable layout optimized for desktop, tablet, and mobile screens, including custom CSS animations and support for reduced-motion preferences.
 
