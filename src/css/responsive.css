@@ -1,0 +1,252 @@
+@media (max-width: 1100px) {
+  body {
+    overflow: auto;
+  }
+
+  main {
+    height: auto;
+    min-height: 100dvh;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    overflow: visible;
+  }
+
+  .hero,
+  .current,
+  .daily,
+  .hourly {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .hourly {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    height: auto;
+    min-height: auto;
+  }
+
+  .dropdown {
+    width: auto;
+  }
+
+  .hourly-container {
+    grid-column: 1 / -1;
+  }
+
+  .hourly-hour {
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+
+  .hourly-temperature {
+    margin-left: auto;
+  }
+
+  .forecast-container {
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1100px) {
+  .current-icon {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .forecast-container {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+
+  .daily-day {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .daily-temperatures {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.125rem;
+  }
+
+  .daily-value {
+    font-size: 0.875rem;
+  }
+
+  .daily-temperatures .daily-value {
+    white-space: nowrap;
+  }
+
+  .hourly-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: 0.75rem;
+    max-height: 24rem;
+  }
+
+  .hourly-hour {
+    padding: 0.5rem 1rem;
+  }
+
+  .hourly-value-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  main {
+    margin-top: 4rem;
+    width: min(100%, 36rem);
+    padding: 1.5rem 1rem 2rem;
+    gap: 3rem;
+  }
+
+  .hero-title {
+    order: 1;
+    text-align: center;
+    font-size: clamp(2.25rem, 12vw, 3rem);
+    line-height: 1.1;
+  }
+
+  .hero-search {
+    order: 2;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero-text-box {
+    width: 100%;
+    height: 3rem;
+    padding-inline: 1rem;
+    box-sizing: border-box;
+  }
+
+  .hero-button {
+    width: 100%;
+    height: 3rem;
+    padding: 0;
+    box-sizing: border-box;
+    
+  }
+
+  .current {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    background: none;
+  }
+
+  .current-location,
+  .current-info {
+    padding-inline: 1.5rem;
+    background-color: var(--color-container);
+  }
+
+  .current-location {
+    padding-top: 1.5rem;
+    text-align: center;
+    border-radius: var(--radius-container) var(--radius-container) 0 0;
+  }
+
+  .current-info {
+    min-height: 0;
+    padding-bottom: 1.5rem;
+    border-radius: 0 0 var(--radius-container) var(--radius-container);
+  }
+
+  .current-city {
+    font-size: 1.5rem;
+  }
+
+  .current-icon {
+    order: 0;
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  .current-temperature {
+    font-size: clamp(2.5rem, 13vw, 3.5rem);
+    white-space: nowrap;
+  }
+
+  .current-conditions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .current-condition {
+    min-height: 5.5rem;
+    padding: 1rem;
+    justify-content: space-between;
+  }
+
+  .current-condition-title {
+    font-size: 0.875rem;
+  }
+
+  .current-condition-value {
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .daily h2,
+  .hourly h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .forecast-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .daily-day {
+    min-height: 7.5rem;
+    padding: 0.75rem;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .daily-value {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .daily-value-icon {
+    align-self: center;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .hourly {
+    padding: 1.25rem;
+  }
+
+  .dropdown {
+    width: auto;
+    height: 2.25rem;
+    font-size: 0.875rem;
+  }
+
+  .hourly-container {
+    gap: 0.75rem;
+    max-height: 30rem;
+  }
+
+  .hourly-hour {
+    justify-content: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .hourly-value-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}

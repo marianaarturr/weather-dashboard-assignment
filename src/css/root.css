@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../../assets/fonts/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf")
+    format("truetype-variations");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-background: #f0f4f7;
+  --color-container: #ffffff;
+  --color-selected: #125ead;
+
+  --color-h2: #03071a;
+  --size-h2: 1.5rem;
+
+  --color-p: #626262;
+  --size-p: 1rem;
+
+  --color-border: #acacac;
+  --color-focus: #eef0f4;
+  --radius-container: 2rem;
+  --radius-box: 1rem;
+}
