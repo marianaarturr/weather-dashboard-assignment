@@ -57,6 +57,21 @@ function buildWeatherUrl(lat, lon) {
     )
 }
 
+function parseWeather(apiData) {
+    const hours = parseHours(apiData)
+    const days = parseDays(apiData, hours)
+
+    const todayDate = apiData.current.time.slice(0, 10)
+    const today = days.find((d) => d.fullDate === todayDate)
+
+    return {
+        current: apiData.current,
+        days,
+        hours,
+        avgToday: today ? today.avg : null,
+    }
+}
+
 function parseHours(apiData) {
     return apiData.hourly.time.map((hour, index) => ({
         fullDate: hour.slice(0, 10),
@@ -84,19 +99,4 @@ function parseDays(apiData, hours) {
             avg: average(dayTemps),
         }
     })
-}
-
-function parseWeather(apiData) {
-    const hours = parseHours(apiData)
-    const days = parseDays(apiData, hours)
-
-    const todayDate = apiData.current.time.slice(0, 10)
-    const today = days.find((d) => d.fullDate === todayDate)
-
-    return {
-        current: apiData.current,
-        days,
-        hours,
-        avgToday: today ? today.avg : null,
-    }
 }
