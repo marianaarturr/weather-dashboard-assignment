@@ -10,9 +10,7 @@
         <link rel="stylesheet" href="css/animations.css" />
         <link rel="stylesheet" href="css/responsive.css" />
 
-        <script src="js/config.js" defer></script>
         <script src="js/utils.js" defer></script>
-        <script src="js/dom.js" defer></script>
         <script src="js/fetch.js" defer></script>
         <script src="js/render.js" defer></script>
         <script src="js/main.js" defer></script>
@@ -21,84 +19,64 @@
     <body>
         <main>
             <section class="hero">
-                <h1 class="hero-title">
-                    <span class="hero-greeting">Hello!</span>
-                    <span class="hero-subtitle">How's the sky looking today?</span>
+                <h1 class="title">
+                    <span class="greeting">Hello!</span>
+                    <span class="subtitle">How's the sky looking today?</span>
                 </h1>
 
-                <div class="hero-search">
+                <div class="search">
                     <input
-                        class="hero-text-box"
-                        id="txtSearch"
+                        class="text-box"
                         type="text"
                         name="search"
                         placeholder="Search for a city..."
                         aria-label="Search for a city..."
                     />
-                    <button class="hero-button" id="btnSearch" type="button">
-                        Search
-                    </button>
+                    <button class="button" type="button">Search</button>
                 </div>
             </section>
 
             <section class="current">
-                <div class="current-location">
-                    <h2 class="current-city" id="currentCity"></h2>
-                    <p class="current-date" id="currentDate"></p>
+                <div class="location">
+                    <h2 class="city"></h2>
+                    <p class="date"></p>
                 </div>
 
-                <div class="current-info">
+                <div class="info">
                     <img
-                        class="current-icon"
-                        id="currentIcon"
+                        class="icon"
                         src="../assets/images/icon-sunny.webp"
                         alt="Weather icon"
                         width="320"
                         height="320"
                     />
-                    <div class="current-temperature">
-                        <span id="currentTemperature"></span>
-                    </div>
+                    <div class="temperature"></div>
                 </div>
 
-                <div class="current-conditions">
-                    <div class="box current-condition">
-                        <p class="current-condition-title">Feels like</p>
-                        <p
-                            class="current-condition-value"
-                            id="currentApparentTemperature"
-                        ></p>
+                <div class="conditions">
+                    <div class="box condition">
+                        <p class="title">Feels like</p>
+                        <p class="value apparent-temperature"></p>
                     </div>
 
-                    <div class="box current-condition">
-                        <p class="current-condition-title">Humidity</p>
-                        <p
-                            class="current-condition-value"
-                            id="currentHumidity"
-                        ></p>
+                    <div class="box condition">
+                        <p class="title">Humidity</p>
+                        <p class="value humidity"></p>
                     </div>
 
-                    <div class="box current-condition">
-                        <p class="current-condition-title">Wind</p>
-                        <p class="current-condition-value" id="currentWind"></p>
+                    <div class="box condition">
+                        <p class="title">Wind</p>
+                        <p class="value wind"></p>
                     </div>
 
-                    <div class="box current-condition">
-                        <p class="current-condition-title">Precipitation</p>
-                        <p
-                            class="current-condition-value"
-                            id="currentPrecipitation"
-                        ></p>
+                    <div class="box condition">
+                        <p class="title">Precipitation</p>
+                        <p class="value precipitation"></p>
                     </div>
 
-                    <div class="box current-condition">
-                        <p class="current-condition-title">
-                            Average Temperature Today
-                        </p>
-                        <p
-                            class="current-condition-value"
-                            id="currentAverageTemperature"
-                        ></p>
+                    <div class="box condition">
+                        <p class="title">Average Temperature Today</p>
+                        <p class="value average-temperature"></p>
                     </div>
                 </div>
             </section>
@@ -106,21 +84,21 @@
             <section class="daily">
                 <h2>Daily forecast</h2>
 
-                <div class="forecast-container" id="forecastContainer"></div>
+                <div class="container"></div>
 
-                <template id="forecastTemplate">
-                    <div class="box daily-day">
-                        <p class="daily-value daily-name"></p>
+                <template>
+                    <div class="box day">
+                        <p class="name"></p>
                         <img
-                            class="daily-value-icon daily-icon"
+                            class="icon"
                             src="../assets/images/icon-sunny.webp"
                             alt=""
                             width="320"
                             height="320"
                         />
-                        <div class="dailyTemperatures">
-                            <p class="daily-value daily-min-temperature"></p>
-                            <p class="daily-value daily-max-temperature"></p>
+                        <div class="temperatures">
+                            <p class="min-temperature"></p>
+                            <p class="max-temperature"></p>
                         </div>
                     </div>
                 </template>
@@ -128,26 +106,21 @@
 
             <section class="hourly">
                 <h2>Hourly forecast</h2>
-                <select
-                    class="dropdown"
-                    id="chooseDay"
-                    aria-label="Choose day"
-                ></select>
+                <select class="dropdown" aria-label="Choose day"></select>
 
-                <div class="hourly-container" id="hourlyContainer"></div>
+                <div class="container"></div>
 
-                <template id="hourlyTemplate">
-                    <div class="box hourly-hour">
+                <template>
+                    <div class="box hour">
                         <img
-                            class="hourly-value-icon hourly-icon"
+                            class="icon"
                             src="../assets/images/icon-sunny.webp"
                             alt=""
                             width="320"
                             height="320"
                         />
-
-                        <p class="hour"></p>
-                        <p class="hourly-temperature"></p>
+                        <p class="time"></p>
+                        <p class="temperature"></p>
                     </div>
                 </template>
             </section>

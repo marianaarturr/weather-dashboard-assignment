@@ -19,79 +19,84 @@
     grid-row: auto;
   }
 
+  .daily .container {
+    gap: var(--spacing-sm);
+  }
+
   .hourly {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    gap: 1rem;
+    gap: var(--spacing-md);
     height: auto;
     min-height: auto;
-  }
 
-  .dropdown {
-    width: auto;
-  }
+    .dropdown {
+      width: auto;
+    }
 
-  .hourly-container {
-    grid-column: 1 / -1;
-  }
+    .container {
+      grid-column: 1 / -1;
 
-  .hourly-hour {
-    justify-content: flex-start;
-    gap: 0.75rem;
-  }
+      .hour {
+        justify-content: flex-start;
+        gap: var(--spacing-sm);
 
-  .hourly-temperature {
-    margin-left: auto;
-  }
-
-  .forecast-container {
-    gap: 0.75rem;
+        .temperature {
+          margin-left: auto;
+        }
+      }
+    }
   }
 }
 
 @media (min-width: 701px) and (max-width: 1100px) {
-  .current-icon {
+  .current .info .icon {
     width: 7rem;
     height: 7rem;
   }
 
-  .forecast-container {
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-  }
+  .daily {
+    .container {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
 
-  .daily-day {
-    padding: 0.75rem 0.5rem;
-  }
+    .day {
+      padding: var(--spacing-sm) 0.5rem;
 
-  .daily-temperatures {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.125rem;
-  }
+      .name,
+      .min-temperature,
+      .max-temperature {
+        font-size: 0.875rem;
+      }
 
-  .daily-value {
-    font-size: 0.875rem;
+      .temperatures {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.125rem;
+        white-space: nowrap;
+      }
+    }
   }
+  
+  .hourly {
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+      gap: var(--spacing-sm);
+      max-height: none;
+      overflow: visible;
+      scrollbar-width: auto;
+    }
 
-  .daily-temperatures .daily-value {
-    white-space: nowrap;
-  }
+    .hour {
+      padding: 0.5rem var(--padding-box);
 
-  .hourly-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-    gap: 0.75rem;
-    max-height: 24rem;
-  }
-
-  .hourly-hour {
-    padding: 0.5rem 1rem;
-  }
-
-  .hourly-value-icon {
-    width: 2.5rem;
-    height: 2.5rem;
+      .icon {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
   }
 }
 
@@ -99,36 +104,37 @@
   main {
     margin-top: 4rem;
     width: min(100%, 36rem);
-    padding: 1.5rem 1rem 2rem;
+    padding: var(--padding-container) var(--padding-box) 2rem;
     gap: 3rem;
   }
 
-  .hero-title {
-    order: 1;
-    text-align: center;
-    font-size: clamp(2.25rem, 12vw, 3rem);
-    line-height: 1.1;
-  }
+  .hero {
+    .title {
+      order: 1;
+      text-align: center;
+      font-size: clamp(2.25rem, 12vw, 3rem);
+      line-height: 1.1;
+    }
 
-  .hero-search {
-    order: 2;
-    flex-direction: column;
-    gap: 1rem;
-  }
+    .search {
+      order: 2;
+      flex-direction: column;
+      gap: var(--spacing-md);
 
-  .hero-text-box {
-    width: 100%;
-    height: 3rem;
-    padding-inline: 1rem;
-    box-sizing: border-box;
-  }
+      .text-box {
+        width: 100%;
+        height: 3rem;
+        padding-inline: var(--padding-box);
+        box-sizing: border-box;
+      }
 
-  .hero-button {
-    width: 100%;
-    height: 3rem;
-    padding: 0;
-    box-sizing: border-box;
-    
+      .button {
+        width: 100%;
+        height: 3rem;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    }
   }
 
   .current {
@@ -137,61 +143,59 @@
     gap: 0;
     padding: 0;
     background: none;
-  }
 
-  .current-location,
-  .current-info {
-    padding-inline: 1.5rem;
-    background-color: var(--color-container);
-  }
+    .location {
+      padding-inline: var(--padding-container);
+      background-color: var(--color-container);
+      padding-top: var(--padding-container);
+      text-align: center;
+      border-radius: var(--radius-container) var(--radius-container) 0 0;
 
-  .current-location {
-    padding-top: 1.5rem;
-    text-align: center;
-    border-radius: var(--radius-container) var(--radius-container) 0 0;
-  }
+      .city {
+        font-size: var(--size-title);
+      }
+    }
 
-  .current-info {
-    min-height: 0;
-    padding-bottom: 1.5rem;
-    border-radius: 0 0 var(--radius-container) var(--radius-container);
-  }
+    .info {
+      padding-inline: var(--padding-container);
+      background-color: var(--color-container);
+      min-height: 0;
+      padding-bottom: var(--padding-container);
+      border-radius: 0 0 var(--radius-container) var(--radius-container);
 
-  .current-city {
-    font-size: 1.5rem;
-  }
+      .icon {
+        order: 0;
+        width: 5.5rem;
+        height: 5.5rem;
+      }
 
-  .current-icon {
-    order: 0;
-    width: 5.5rem;
-    height: 5.5rem;
-  }
+      .temperature {
+        font-size: clamp(2.5rem, 13vw, 3.5rem);
+        white-space: nowrap;
+      }
+    }
 
-  .current-temperature {
-    font-size: clamp(2.5rem, 13vw, 3.5rem);
-    white-space: nowrap;
-  }
+    .conditions {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-md);
 
-  .current-conditions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-top: 1rem;
-  }
+      .condition {
+        min-height: 5.5rem;
+        padding: var(--padding-box);
+        justify-content: space-between;
 
-  .current-condition {
-    min-height: 5.5rem;
-    padding: 1rem;
-    justify-content: space-between;
-  }
+        .title {
+          font-size: 0.875rem;
+        }
 
-  .current-condition-title {
-    font-size: 0.875rem;
-  }
-
-  .current-condition-value {
-    margin-top: 0;
-    font-size: 1.5rem;
-    font-weight: 500;
+        .value {
+          margin-top: 0;
+          font-size: var(--size-title);
+          font-weight: 500;
+        }
+      }
+    }
   }
 
   .daily h2,
@@ -200,53 +204,54 @@
     font-weight: 600;
   }
 
-  .forecast-container {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+  .daily {
+    .container {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 
-  .daily-day {
-    min-height: 7.5rem;
-    padding: 0.75rem;
-    align-items: stretch;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
+    .day {
+      min-height: 7.5rem;
+      padding: var(--spacing-sm);
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 0.5rem;
 
-  .daily-value {
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-align: center;
-  }
+      .name {
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-align: center;
+      }
 
-  .daily-value-icon {
-    align-self: center;
-    width: 2.5rem;
-    height: 2.5rem;
+      .icon {
+        align-self: center;
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
   }
 
   .hourly {
     padding: 1.25rem;
-  }
 
-  .dropdown {
-    width: auto;
-    height: 2.25rem;
-    font-size: 0.875rem;
-  }
+    .dropdown {
+      width: auto;
+      height: 2.25rem;
+      font-size: 0.875rem;
+    }
 
-  .hourly-container {
-    gap: 0.75rem;
-    max-height: 30rem;
-  }
+    .container {
+      gap: var(--spacing-sm);
+      max-height: none;
+      overflow: visible;
+    }
 
-  .hourly-hour {
-    justify-content: flex-start;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-  }
+    .hour {
+      padding: var(--spacing-sm) var(--padding-box);
 
-  .hourly-value-icon {
-    width: 2rem;
-    height: 2rem;
+      .icon {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
   }
 }

@@ -1,41 +1,38 @@
-async function loadWeather() {
-    let search = txtSearch.value.trim()
+function main() {
+    document.querySelector(".hero .button").addEventListener("click", onTextSearch)
+    document.querySelector(".hero .text-box").addEventListener("keydown", (e) => {
+        if (e.key === "Enter")
+            onTextSearch()
+    })
 
-    if (!search) {
-        search = DEFAULT_CITY
-    }
+    onTextSearch()
+}
 
+async function onTextSearch() {
+    const txtSearch = document.querySelector(".hero .text-box")
+    const search = txtSearch.value.trim() || 'London'
     const place = await getGeoData(search)
 
-    if (!place) {
+    if (place){
+        const weather = await getWeather(place.latitude, place.longitude)
+        const chooseDay = document.querySelector(".hourly .dropdown")
+
+        if (weather) {
+            renderCurrentWeather(place, weather)
+            renderDailyForecast(weather.days)
+            renderDayOptions(weather.days)
+            renderHourlyForecast(weather.hours, chooseDay.value)
+
+            chooseDay.onchange = () => {
+                renderHourlyForecast(weather.hours, chooseDay.value)
+            }
+        } else {
+            return
+        }
+
+    } else {
         alert(`City "${search}" not found`)
-        return
-    }
-
-    const weather = await getWeather(place.latitude, place.longitude)
-
-    if (!weather) {
-        return
-    }
-
-    renderCurrentWeather(place, weather)
-    renderDailyForecast(weather.days)
-    renderDayOptions(weather.days)
-
-    chooseDay.value = weather.days[0].fullDate
-    renderHourlyForecast(weather.hours, chooseDay.value)
-
-    chooseDay.onchange = () => {
-        renderHourlyForecast(weather.hours, chooseDay.value)
     }
 }
 
-btnSearch.addEventListener("click", loadWeather)
-
-txtSearch.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        loadWeather()
-    }
-})
-
-loadWeather()
+main()

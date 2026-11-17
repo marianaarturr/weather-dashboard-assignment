@@ -9,8 +9,8 @@
   }
 }
 
-.daily-day,
-.hourly-hour {
+.day,
+.hour {
   animation: fade-up 0.5s ease-out backwards;
   animation-delay: calc(var(--i, 0) * 60ms);
 }
@@ -25,7 +25,7 @@
   }
 }
 
-.current-icon {
+.current .icon {
   animation: float 4s ease-in-out infinite;
 }
 
@@ -40,8 +40,8 @@
   }
 }
 
-.hero-greeting,
-.hero-subtitle {
+.greeting,
+.subtitle {
   animation: slide-in 0.7s ease-out backwards;
 }
 

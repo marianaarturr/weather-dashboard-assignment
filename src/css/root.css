@@ -12,14 +12,22 @@
   --color-container: #ffffff;
   --color-selected: #125ead;
 
-  --color-h2: #03071a;
-  --size-h2: 1.5rem;
+  --color-title: #03071a;
+  --size-title: 1.5rem;
 
-  --color-p: #626262;
-  --size-p: 1rem;
+  --color-text: #626262;
+  --size-text: 1rem;
 
   --color-border: #acacac;
   --color-focus: #eef0f4;
+  
   --radius-container: 2rem;
   --radius-box: 1rem;
+
+  /* Novas variáveis para paddings e espaçamentos repetidos */
+  --padding-container: 1.5rem;
+  --padding-box: 1rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
 }

@@ -1,13 +1,3 @@
-async function fetchJson(url) {
-    const response = await fetch(url)
-
-    if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`)
-    }
-
-    return response.json()
-}
-
 async function getGeoData(search) {
     try {
         const result = await fetchJson(buildGeoUrl(search))
@@ -39,20 +29,30 @@ async function getWeather(lat, lon) {
     }
 }
 
+async function fetchJson(url) {
+    const response = await fetch(url)
+
+    if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`)
+    }
+
+    return response.json()
+}
+
 function buildGeoUrl(search) {
-    return `${API.geocoding}?name=${encodeURIComponent(search)}&count=1&language=en&format=json`
+    return `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(search)}&count=1&language=en&format=json`
 }
 
 function buildWeatherUrl(lat, lon) {
     return (
-        `${API.forecast}` +
+        `https://api.open-meteo.com/v1/forecast` +
         `?latitude=${lat}&longitude=${lon}` +
         `&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m,weather_code` +
         `&daily=weather_code,temperature_2m_max,temperature_2m_min` +
         `&hourly=temperature_2m,weather_code` +
-        `&temperature_unit=${UNITS.temperature.api}` +
-        `&wind_speed_unit=${UNITS.wind.api}` +
-        `&precipitation_unit=${UNITS.precipitation.api}` +
+        `&temperature_unit=celsius` +
+        `&wind_speed_unit=kmh` +
+        `&precipitation_unit=mm` +
         `&timezone=auto&forecast_days=7`
     )
 }
@@ -99,4 +99,12 @@ function parseDays(apiData, hours) {
             avg: average(dayTemps),
         }
     })
+}
+
+function average(values) {
+    const valid = values.filter((v) => typeof v === "number")
+    if (valid.length === 0) return null
+
+    const sum = valid.reduce((acc, v) => acc + v, 0)
+    return Math.round((sum / valid.length) * 10) / 10
 }

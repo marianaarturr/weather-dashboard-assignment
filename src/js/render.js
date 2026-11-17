@@ -1,5 +1,3 @@
-const DEFAULT_ICON = "icon-partly-cloudy.webp"
-
 const WEATHER_ICONS = [
     { icon: "icon-sunny.webp", codes: [0] },
     { icon: "icon-partly-cloudy.webp", codes: [1, 2, 3] },
@@ -10,60 +8,58 @@ const WEATHER_ICONS = [
     { icon: "icon-storm.webp", codes: [95, 96, 99] },
 ]
 
-function getWeatherIcon(code) {
-    const match = WEATHER_ICONS.find(({ codes }) => codes.includes(code))
-    return ICON_PATH + (match ? match.icon : DEFAULT_ICON)
+function formatTemperature(value) {
+    return `${value} °C`
 }
 
 function renderCurrentWeather(place, weather) {
-    currentCity.textContent = `${place.name}, ${place.country}`
-    currentDate.textContent = new Intl.DateTimeFormat("en-US", {
+    const { current, avgToday } = weather
+
+    document.querySelector(".current .city").textContent = `${place.name}, ${place.country}`
+    document.querySelector(".current .date").textContent = new Intl.DateTimeFormat("en-US", {
         weekday: "long",
         month: "short",
         day: "numeric",
         year: "numeric",
-    }).format(new Date(weather.current.time))
+    }).format(new Date(current.time))
 
-    currentIcon.src = getWeatherIcon(weather.current.weather_code)
-    currentTemperature.textContent = `${weather.current.temperature_2m} ${UNITS.temperature.label}`
-    currentApparentTemperature.textContent = `${weather.current.apparent_temperature} ${UNITS.temperature.label}`
-    currentHumidity.textContent = `${weather.current.relative_humidity_2m} ${UNITS.humidity.label}`
-    currentWind.textContent = `${weather.current.wind_speed_10m} ${UNITS.wind.label}`
-    currentPrecipitation.textContent = `${weather.current.precipitation} ${UNITS.precipitation.label}`
-    currentAverageTemperature.textContent =
-        weather.avgToday !== null
-            ? `${weather.avgToday} ${UNITS.temperature.label}`
-            : "N/A"
+    document.querySelector(".current .info .icon").src = getWeatherIcon(current.weather_code)
+    document.querySelector(".current .info .temperature").textContent = formatTemperature(current.temperature_2m)
+    document.querySelector(".current .apparent-temperature").textContent = formatTemperature(current.apparent_temperature)
+    document.querySelector(".current .humidity").textContent = `${current.relative_humidity_2m} %`
+    document.querySelector(".current .wind").textContent = `${current.wind_speed_10m} km/h`
+    document.querySelector(".current .precipitation").textContent = `${current.precipitation} mm`
+    document.querySelector(".current .average-temperature").textContent =
+        avgToday !== null ? formatTemperature(avgToday) : "N/A"
 }
 
 function renderDailyForecast(days) {
+    const forecastContainer = document.querySelector(".daily .container")
+    const template = document.querySelector(".daily template")
     forecastContainer.innerHTML = ""
 
     days.forEach((day, index) => {
-        const clone = forecastTemplate.content.cloneNode(true)
+        const clone = template.content.cloneNode(true)
 
-        const forecastDay = clone.querySelector(".daily-day")
-        const dailyName = clone.querySelector(".daily-name")
-        const dailyIcon = clone.querySelector(".daily-icon")
-        const dailyMinTemperature = clone.querySelector(
-            ".daily-min-temperature",
-        )
-        const dailyMaxTemperature = clone.querySelector(
-            ".daily-max-temperature",
-        )
+        const forecastDay = clone.querySelector(".day")
+        const dailyName = clone.querySelector(".name")
+        const dailyIcon = clone.querySelector(".icon")
+        const dailyMinTemperature = clone.querySelector(".min-temperature")
+        const dailyMaxTemperature = clone.querySelector(".max-temperature")
 
         forecastDay.style.setProperty("--i", index)
         dailyName.textContent = day.weekDate
         dailyIcon.src = getWeatherIcon(day.weatherCode)
         dailyIcon.alt = `Weather icon for ${day.weekDate}`
-        dailyMinTemperature.textContent = `${day.min} ${UNITS.temperature.label}`
-        dailyMaxTemperature.textContent = `${day.max} ${UNITS.temperature.label}`
+        dailyMinTemperature.textContent = formatTemperature(day.min)
+        dailyMaxTemperature.textContent = formatTemperature(day.max)
 
         forecastContainer.appendChild(clone)
     })
 }
 
 function renderDayOptions(days) {
+    const chooseDay = document.querySelector(".hourly .dropdown")
     chooseDay.innerHTML = ""
 
     days.forEach((day) => {
@@ -77,25 +73,32 @@ function renderDayOptions(days) {
 }
 
 function renderHourlyForecast(hours, selectedDate) {
+    const hourlyContainer = document.querySelector(".hourly .container")
+    const template = document.querySelector(".hourly template")
     hourlyContainer.innerHTML = ""
 
     const filteredHours = hours.filter((hour) => hour.fullDate === selectedDate)
 
     filteredHours.forEach((hour, index) => {
-        const clone = hourlyTemplate.content.cloneNode(true)
+        const clone = template.content.cloneNode(true)
 
-        const forecastHour = clone.querySelector(".hourly-hour")
-        const hourlyIcon = clone.querySelector(".hourly-icon")
-        const hourly = clone.querySelector(".hour")
-        const hourlyTemperature = clone.querySelector(".hourly-temperature")
+        const forecastHour = clone.querySelector(".hour")
+        const hourlyIcon = clone.querySelector(".icon")
+        const hourlyTime = clone.querySelector(".time")
+        const hourlyTemperature = clone.querySelector(".temperature")
 
         forecastHour.style.setProperty("--i", index)
 
-        hourly.textContent = hour.hour
+        hourlyTime.textContent = hour.hour
         hourlyIcon.src = getWeatherIcon(hour.weatherCode)
         hourlyIcon.alt = `Weather icon for ${hour.hour}`
-        hourlyTemperature.textContent = `${hour.temperature} ${UNITS.temperature.label}`
+        hourlyTemperature.textContent = formatTemperature(hour.temperature)
 
         hourlyContainer.appendChild(clone)
     })
+}
+
+function getWeatherIcon(code) {
+    const match = WEATHER_ICONS.find(({ codes }) => codes.includes(code))
+    return "../assets/images/" + (match ? match.icon : "icon-partly-cloudy.webp")
 }
