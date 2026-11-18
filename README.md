@@ -39,12 +39,9 @@ The API returns parallel arrays for hourly and daily parameters. The application
 │   ├── responsive.css
 │   └── root.css
 ├── js/
-│   ├── config.js
-│   ├── dom.js
 │   ├── fetch.js
 │   ├── main.js
 │   ├── render.js
-│   └── utils.js
 └── main.html
 ```
 
@@ -60,3 +57,6 @@ The API returns parallel arrays for hourly and daily parameters. The application
 
 ## Author
 - Mariana Artur 2023214572
+
+## Link
+https://github.com/marianaarturr/weather-dashboard-assignment
