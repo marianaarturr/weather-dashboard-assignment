@@ -67,5 +67,6 @@ The API returns parallel arrays for hourly and daily parameters. The application
 ## Author
 - Mariana Artur (2023214572)
 
-## Link
-https://github.com/marianaarturr/weather-dashboard-assignment
+## Links
+Repository Code (GitHub): https://github.com/marianaarturr/weather-dashboard-assignment
+Site (Git Pages): https://github.io/marianaarturr/weather-dashboard-assignment
